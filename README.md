@@ -40,7 +40,7 @@ python -m pip install -r requirements.txt
 
 Build:
 ```powershell
-python -m PyInstaller --noconfirm --onefile --windowed --name Aero --icon=icon.ico --add-data "icon.ico;." main.py
+python -m PyInstaller --clean --noconfirm --onefile --windowed --name Aero --icon=icon.ico --add-data "icon.ico;." --hidden-import=PIL --hidden-import=pystray main.py
 ```
 
 ## Notes
