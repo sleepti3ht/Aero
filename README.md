@@ -11,7 +11,10 @@ Aero is a Windows Explorer opacity controller with tray support, startup persist
 - Minimize to system tray.
 - Restore or exit from tray.
 - Custom app icon support.
-<p align="center"><img width="716" height="383" alt="image" src="https://github.com/user-attachments/assets/9494f481-79d9-4157-8081-23c07e90762e"/> </p>
+<p align="center"><img width="801" height="471" alt="image" src="https://github.com/user-attachments/assets/d218909e-ac49-4d59-9551-ec51625d175b" />
+ </p>
+<p align="center"> <img width="802" height="468" alt="image" src="https://github.com/user-attachments/assets/1b34b7bf-08f0-4249-9e71-7aedb3743dbf" />  </p>
+
 
 ## Download
 Go to the latest GitHub Release and download `Aero.exe`.
