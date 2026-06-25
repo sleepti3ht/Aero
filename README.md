@@ -7,7 +7,7 @@ A small Windows utility for testing acrylic transparency with GradientColor.
 - Opacity slider
 - Startup toggle
 
-  ## Installation
+## Installation
 Download the latest release and run `Aero.exe`.
 Python and dependencies are not required.
 
