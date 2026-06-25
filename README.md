@@ -1,5 +1,6 @@
 # Aero
-<img width="180" height="180" alt="_jjf830gdbfp7fnqjekoe_0" src="https://github.com/user-attachments/assets/57c2adf9-b5ef-453a-a9df-de9e573b8560"/>
+<p align="center"><img width="180" height="180" alt="_jjf830gdbfp7fnqjekoe_0" src="https://github.com/user-attachments/assets/57c2adf9-b5ef-453a-a9df-de9e573b8560"/>
+</p>
 
 Aero is a Windows Explorer opacity controller with tray support, startup persistence, and a simple CustomTkinter interface.
 
@@ -10,7 +11,7 @@ Aero is a Windows Explorer opacity controller with tray support, startup persist
 - Minimize to system tray.
 - Restore or exit from tray.
 - Custom app icon support.
-<img width="716" height="383" alt="image" src="https://github.com/user-attachments/assets/9494f481-79d9-4157-8081-23c07e90762e"/>
+<p align="center"><img width="716" height="383" alt="image" src="https://github.com/user-attachments/assets/9494f481-79d9-4157-8081-23c07e90762e"/> </p>
 
 ## Download
 Go to the latest GitHub Release and download `Aero.exe`.
