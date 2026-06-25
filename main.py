@@ -3,8 +3,12 @@ import json
 import os
 import sys
 import time
+import threading
 import customtkinter as ctk
 from tkinter import messagebox
+from PIL import Image
+import pystray
+from pystray import MenuItem as item
 
 try:
     import winreg
@@ -144,6 +148,9 @@ class AeroApp(ctk.CTk):
         super().__init__()
         global app
         app = self
+        self.tray_icon = None
+        self.tray_thread = None
+        self.is_hidden = False
 
         icon_path = resource_path(ICON_FILE)
         try:
@@ -161,7 +168,7 @@ class AeroApp(ctk.CTk):
 
         self.build_ui()
         self.after(300, self.apply_effect)
-        self.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.protocol("WM_DELETE_WINDOW", self.hide_to_tray)
 
     def build_ui(self):
         outer = ctk.CTkFrame(self, corner_radius=18)
@@ -236,9 +243,72 @@ class AeroApp(ctk.CTk):
             "autostart": self.autostart_var.get()
         })
 
-    def on_close(self):
-        self.save_state()
+    def tray_show(self, icon=None, item=None):
+        self.after(0, self.restore_from_tray)
+
+    def tray_exit(self, icon=None, item=None):
+        self.after(0, self.quit_app)
+
+    def create_tray_icon(self):
+        if self.tray_icon is not None:
+            return
+        try:
+            tray_image = Image.open(resource_path(ICON_FILE))
+        except Exception:
+            tray_image = Image.new("RGBA", (64, 64), (0, 120, 215, 255))
+
+        menu = pystray.Menu(
+            item("Show", self.tray_show, default=True),
+            item("Exit", self.tray_exit),
+        )
+
+        self.tray_icon = pystray.Icon(
+            APP_NAME,
+            tray_image,
+            APP_NAME,
+            menu
+        )
+
+        def run_icon():
+            try:
+                self.tray_icon.run()
+            except Exception:
+                pass
+
+        self.tray_thread = threading.Thread(target=run_icon, daemon=True)
+        self.tray_thread.start()
+
+    def hide_to_tray(self):
+        if self.is_hidden:
+            return
+        self.is_hidden = True
+        self.withdraw()
+        self.create_tray_icon()
+        self.status.configure(text="Running in tray")
+        write_log("Minimized to tray")
+
+    def restore_from_tray(self):
+        self.deiconify()
+        self.lift()
+        self.focus_force()
+        self.is_hidden = False
+        self.status.configure(text="Restored from tray")
+        write_log("Restored from tray")
+
+    def quit_app(self):
+        try:
+            self.save_state()
+        except Exception:
+            pass
+        try:
+            if self.tray_icon:
+                self.tray_icon.stop()
+        except Exception:
+            pass
         self.destroy()
+
+    def on_close(self):
+        self.hide_to_tray()
 
 
 if __name__ == "__main__":
