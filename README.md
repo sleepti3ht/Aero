@@ -7,17 +7,16 @@ A small Windows utility for testing acrylic transparency with GradientColor.
 - Opacity slider
 - Startup toggle
 
+  ## Installation
+Download the latest release and run `Aero.exe`.
+Python and dependencies are not required.
+
 ## Run locally
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
-```
-
-## Build
-```powershell
-pyinstaller --onefile --windowed --name Aero main.py
 ```
 
 ## Notes
